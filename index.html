@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KR VISHAL | Software Engineer Portfolio</title>
+  <style>
+    :root {
+      --bg: #11100f;
+      --panel: #191817;
+      --muted: #9b9696;
+      --orange: #ff6b2f;
+      --lime: #c6ff2f;
+      --ink: #090909;
+      --line: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: #fff;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255, 107, 47, 0.12), transparent 25rem),
+        linear-gradient(180deg, #151312 0%, var(--bg) 42%, #0e0d0c 100%);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 34px clamp(18px, 5vw, 72px) 72px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 22px;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      margin-bottom: clamp(54px, 11vh, 110px);
+    }
+
+    .nav__inner {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 24px;
+      background: rgba(31, 30, 29, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav a {
+      width: 38px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #f2f2f2;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .nav svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.2;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(280px, 430px) minmax(0, 1fr);
+      gap: clamp(38px, 7vw, 124px);
+      align-items: center;
+      min-height: 680px;
+    }
+
+    .profile-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      padding: 38px 36px 34px;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 18px;
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    .profile-card::before,
+    .profile-card::after {
+      content: "";
+      position: absolute;
+      border: 5px dashed #ff7a16;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .profile-card::before {
+      width: 210px;
+      height: 210px;
+      top: -116px;
+      left: -34px;
+    }
+
+    .profile-card::after {
+      width: 210px;
+      height: 210px;
+      left: -108px;
+      bottom: 112px;
+    }
+
+    .portrait {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 1 / 1.18;
+      background: #d7e4f6;
+      border-radius: 18px;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+
+    .profile-card h1 {
+      position: relative;
+      margin: 28px 0 18px;
+      font-size: clamp(2.1rem, 4vw, 3.05rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+
+    .profile-card p {
+      position: relative;
+      margin: 92px 0 0;
+      color: #777;
+      font-size: clamp(1.18rem, 2.3vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.12;
+      text-align: center;
+    }
+
+    .spark {
+      position: absolute;
+      z-index: 1;
+      left: 128px;
+      bottom: 190px;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      background: #ff780f;
+      color: #fff;
+      border: 7px solid #fff;
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 0 10px 20px rgba(255, 120, 15, 0.24);
+    }
+
+    .hero-copy {
+      padding-top: 8px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: #aaa4a4;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 4px;
+      background: var(--orange);
+      border-radius: 999px;
+    }
+
+    .display {
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(4.2rem, 8.8vw, 8.4rem);
+      line-height: 0.88;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .display span {
+      display: block;
+      color: rgba(255, 255, 255, 0.16);
+    }
+
+    .intro {
+      max-width: 600px;
+      margin: 26px 0 72px;
+      color: var(--muted);
+      font-size: clamp(1.14rem, 1.8vw, 1.6rem);
+      font-weight: 600;
+      line-height: 1.26;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(130px, 1fr));
+      gap: 28px;
+      max-width: 680px;
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 12px;
+      color: #fff;
+      font-size: clamp(3.3rem, 6vw, 5rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      display: block;
+      color: #aaa4a4;
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding-top: 72px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 24px;
+      border-top: 1px solid var(--line);
+      padding-top: 44px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+      font-weight: 650;
+      line-height: 1.45;
+    }
+
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .skill,
+    .project {
+      min-height: 168px;
+      padding: 24px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--panel);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .skill {
+      display: flex;
+      align-items: end;
+      color: #101010;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.26), transparent 44%),
+        var(--lime);
+      font-size: clamp(1.5rem, 2.4vw, 2.35rem);
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
+
+    .skill:nth-child(2n) {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 48%),
+        var(--orange);
+      color: #fff;
+    }
+
+    .skill:nth-child(3n) {
+      background: #fff;
+      color: #101010;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 260px;
+    }
+
+    .project h3 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.3vw, 2.25rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .project p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .project a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 44px;
+      padding: 0 18px;
+      color: #fff;
+      background: var(--orange);
+      border-radius: 10px;
+      font-weight: 850;
+    }
+
+    .project:nth-child(2) {
+      background: #fff;
+      color: #101010;
+    }
+
+    .project:nth-child(2) p {
+      color: #626262;
+    }
+
+    .experience-card {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
+      gap: 24px;
+      padding: 30px;
+      border-radius: 18px;
+      background: #fff;
+      color: #101010;
+    }
+
+    .experience-meta {
+      display: grid;
+      align-content: space-between;
+      gap: 28px;
+      min-height: 210px;
+      padding: 24px;
+      color: #fff;
+      background: var(--orange);
+      border-radius: 14px;
+    }
+
+    .experience-meta strong {
+      display: block;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      line-height: 0.82;
+      letter-spacing: -0.06em;
+    }
+
+    .experience-meta span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.18;
+      text-transform: uppercase;
+    }
+
+    .experience-body h3 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .experience-body h4 {
+      margin: 0 0 18px;
+      color: #666;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      line-height: 1.2;
+    }
+
+    .experience-body p {
+      margin: 0;
+      color: #555;
+      font-size: 1.08rem;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .education-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .education-card {
+      display: grid;
+      grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
+      gap: 24px;
+      padding: 28px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .education-year {
+      display: grid;
+      place-items: center;
+      min-height: 120px;
+      color: #101010;
+      background: var(--lime);
+      border-radius: 14px;
+      font-size: clamp(1.4rem, 2.6vw, 2.3rem);
+      font-weight: 950;
+      line-height: 1;
+      text-align: center;
+      letter-spacing: -0.04em;
+    }
+
+    .education-card:nth-child(2) .education-year {
+      color: #fff;
+      background: var(--orange);
+    }
+
+    .education-body h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .education-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      font-weight: 650;
+      line-height: 1.45;
+    }
+
+    .contact-form {
+      margin-top: 20px;
+      padding: 28px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-form h3 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 3vw, 3.25rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: #aaa4a4;
+      font-size: 0.88rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 16px;
+      color: #fff;
+      background: #0f0e0d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      font: inherit;
+      font-weight: 650;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 138px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255, 107, 47, 0.18);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .submit-button {
+      min-height: 50px;
+      padding: 0 20px;
+      color: #fff;
+      background: var(--orange);
+      border: 0;
+      border-radius: 10px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 18px;
+      color: #101010;
+      background: var(--lime);
+      border-radius: 10px;
+      font-weight: 900;
+    }
+
+    .linkedin-logo {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      color: #fff;
+      background: #0a66c2;
+      border-radius: 5px;
+      font-size: 1.05rem;
+      font-weight: 950;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+    }
+
+    .github-logo {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      color: #fff;
+      background: #181717;
+      border-radius: 999px;
+    }
+
+    .github-logo svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    footer {
+      margin-top: 54px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      color: #8d8888;
+      font-weight: 650;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .profile-card {
+        width: min(430px, 100%);
+      }
+
+      .intro {
+        margin-bottom: 46px;
+      }
+
+      .skills-grid,
+      .projects-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        grid-template-columns: 1fr;
+      }
+
+      .education-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 16px;
+      }
+
+      .nav__inner {
+        gap: 6px;
+        padding: 10px 12px;
+        border-radius: 16px;
+      }
+
+      .nav a {
+        width: 34px;
+      }
+
+      .hero {
+        gap: 34px;
+      }
+
+      .profile-card {
+        min-height: 560px;
+        padding: 28px 24px;
+      }
+
+      .profile-card p {
+        margin-top: 82px;
+      }
+
+      .spark {
+        left: 92px;
+      }
+
+      .display {
+        font-size: clamp(3.45rem, 17vw, 5rem);
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="Portfolio navigation">
+      <div class="nav__inner">
+        <a href="#home" title="Home" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+        </a>
+        <a href="#about" title="About" aria-label="About">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+        </a>
+        <a href="#projects" title="Projects" aria-label="Projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v3"/></svg>
+        </a>
+        <a href="#skills" title="Skills" aria-label="Skills">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m14.7 6.3 3 3"/><path d="M3 21l7.5-7.5"/><path d="m16 4 4 4-9.5 9.5H6.5v-4Z"/></svg>
+        </a>
+        <a href="#contact" title="Contact" aria-label="Contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </a>
+      </div>
+    </nav>
+
+    <section class="hero" id="home">
+      <aside class="profile-card" aria-label="KR VISHAL profile card">
+        <div class="portrait">
+          <img src="file:///C:/Users/david/Downloads/WhatsApp%20Image%202026-06-12%20at%2012.31.01%20PM.jpeg" alt="KR VISHAL profile photo" />
+        </div>
+        <h1>KR VISHAL</h1>
+        <span class="spark">#</span>
+        <p>A Computer Science engineering graduate building practical web and software solutions.</p>
+      </aside>
+
+      <div class="hero-copy">
+        <div class="eyebrow">Portfolio</div>
+        <h2 class="display">Software <span>Engineer</span></h2>
+        <p class="intro">
+          Passionate about solving real-world problems with clean code, useful interfaces, and a steady curiosity for new technologies.
+        </p>
+        <div class="stats" aria-label="Portfolio highlights">
+          <div class="stat"><strong>+6</strong><span>Core<br />Skills</span></div>
+          <div class="stat"><strong>+3</strong><span>Projects<br />Built</span></div>
+          <div class="stat"><strong>+6</strong><span>Years As<br />Engineering Student</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-heading">
+        <h2>About Me</h2>
+        <p>
+          I am a Computer Science engineering student with a strong interest in building useful web and software projects. Since childhood, I have enjoyed understanding how things work, experimenting with broken objects, and finding practical ways to repair or improve them. That curiosity shaped my goal of becoming a developer who creates simple, smart, and real-world solutions through technology.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-heading">
+        <h2>Education</h2>
+        <p>My academic journey in Computer Science, from diploma fundamentals to specialization in Artificial Intelligence and Machine Learning.</p>
+      </div>
+      <div class="education-list">
+        <article class="education-card">
+          <div class="education-year">2023<br />-<br />2026</div>
+          <div class="education-body">
+            <h3>B.Tech in CSE AIML</h3>
+            <p>I completed my Bachelor of Technology in Computer Science Engineering with specialization in Artificial Intelligence and Machine Learning from CGC University.</p>
+          </div>
+        </article>
+        <article class="education-card">
+          <div class="education-year">2020<br />-<br />2023</div>
+          <div class="education-body">
+            <h3>Diploma in CSE</h3>
+            <p>Before my B.Tech, I completed a Diploma in Computer Science Engineering from Quantum University, where I built my foundation in programming, computer systems, and core technical concepts.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading">
+        <h2>Skills</h2>
+        <p>Technical tools and creative abilities from the original portfolio, presented as bold dashboard tiles.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill">C / C++</div>
+        <div class="skill">Python</div>
+        <div class="skill">HTML CSS JS</div>
+        <div class="skill">UI &amp; UX</div>
+        <div class="skill">MS Office</div>
+        <div class="skill">GitHub</div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading">
+        <h2>Projects</h2>
+        <p>Project work adapted from the supplied HTML file, with clear links where the original page included them.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project">
+          <div>
+            <h3>Smart Traffic Light System</h3>
+            <p>IoT-based traffic system using Arduino to optimize traffic flow and reduce congestion.</p>
+          </div>
+          <a href="https://github.com/krvishal23/smart-traffic-light-system" target="_blank" rel="noreferrer">View Project</a>
+        </article>
+        <article class="project">
+          <div>
+            <h3>Online Quiz App</h3>
+            <p>A web-based quiz app using HTML, CSS, and JavaScript with a dynamic scoring system.</p>
+          </div>
+          <a href="https://krvishal23.github.io/CS-quiz-website/" target="_blank" rel="noreferrer">Open App</a>
+        </article>
+        <article class="project">
+          <div>
+            <h3>Portfolio Website</h3>
+            <p>A responsive portfolio website made with clean HTML and CSS to showcase work and contact details.</p>
+          </div>
+          <a href="#contact">Contact Kumar</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-heading">
+        <h2>Experience</h2>
+        <p>Hands-on industry exposure in networking, automation, and AI-focused technology environments.</p>
+      </div>
+      <article class="experience-card">
+        <div class="experience-meta">
+          <div>
+            <strong>2</strong>
+            <span>Months<br />Internship</span>
+          </div>
+          <span>Chandigarh, India</span>
+        </div>
+        <div class="experience-body">
+          <h3>Networking Engineer Intern</h3>
+          <h4>Tulsa Automation | AI &amp; Automation Company</h4>
+          <p>
+            I completed a 2-month internship as a Networking Engineer at Tulsa Automation, an AI and automation company based in Chandigarh, India. During this experience, I gained practical exposure to networking concepts, technical troubleshooting, system connectivity, and how automation-focused companies use reliable infrastructure to support real-world solutions.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-heading">
+        <h2>Contact</h2>
+      </div>
+      <form class="contact-form" action="mailto:kv797945@gmail.com" method="post" enctype="text/plain">
+        <h3>Recruiter &amp; Freelance Enquiry</h3>
+        <div class="social-links" aria-label="Connect with KR VISHAL">
+          <a class="social-link" href="https://www.linkedin.com/in/krvishal23" target="_blank" rel="noreferrer">
+            <span class="linkedin-logo" aria-hidden="true">in</span>
+            LinkedIn: krvishal23
+          </a>
+          <a class="social-link" href="https://github.com/krvishal23" target="_blank" rel="noreferrer">
+            <span class="github-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.2-3.37-1.2-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.5 9.5 0 0 1 12 5.98c.85 0 1.7.11 2.5.34 1.9-1.3 2.74-1.03 2.74-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+              </svg>
+            </span>
+            GitHub: krvishal23
+          </a>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="Name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="Email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="contact-type">Contact Type</label>
+            <select id="contact-type" name="Contact type" required>
+              <option value="">Select one</option>
+              <option>Recruiter</option>
+              <option>Freelance Client</option>
+              <option>Collaboration</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input id="subject" name="Subject" type="text" placeholder="Opportunity or project title" required />
+          </div>
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" placeholder="Share the role, project, timeline, budget, or next steps." required></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="submit-button" type="submit">Send Enquiry</button>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      &copy; 2026 KR VISHAL.
+    </footer>
+  </main>
+</body>
+</html>
